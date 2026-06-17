@@ -539,17 +539,20 @@
 <div id="toast"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="20 6 9 17 4 12"/></svg><span id="toastMsg"></span></div>
 
 <script>
-const INITIAL_DATA = [{"data": "15/06/2026", "conta": "4617", "centro": "T-MULT", "codProduto": "4714", "produto": "PETCOKE MTE", "navio": "FYM CRYSTAL", "qtd": 53669, "custoUnit": 699.64, "custoTotal": 37548594.81}, {"data": "15/06/2026", "conta": "4617", "centro": "T-MULT", "codProduto": "4715", "produto": "TÉRMICO", "navio": "LILA MUNDRA", "qtd": 339, "custoUnit": 381.38, "custoTotal": 129252.43}, {"data": "15/06/2026", "conta": "4617", "centro": "T-MULT", "codProduto": "4723", "produto": "PETCOKE ATE", "navio": "SOLE", "qtd": 2467, "custoUnit": 622.18, "custoTotal": 1535066.84}, {"data": "15/06/2026", "conta": "4840", "centro": "CANTEIRÓPOLIS", "codProduto": "4697", "produto": "MINÉRIO", "navio": "EXPORTAÇÃO", "qtd": 18573, "custoUnit": 197.28, "custoTotal": 3664111.59}, {"data": "15/06/2026", "conta": "4840", "centro": "CANTEIRÓPOLIS", "codProduto": "4698", "produto": "SINTER", "navio": "EXPORTAÇÃO", "qtd": 11355, "custoUnit": 188.98, "custoTotal": 2145846.81}, {"data": "15/06/2026", "conta": "5624", "centro": "CARBOBRÁS", "codProduto": "4662", "produto": "TÉRMICO", "navio": "JOKER", "qtd": 33523, "custoUnit": 555.92, "custoTotal": 18636491.48}, {"data": "15/06/2026", "conta": "5624", "centro": "CARBOBRÁS", "codProduto": "4708", "produto": "CUCUTA", "navio": "PACIFIC TALENT", "qtd": 2840, "custoUnit": 842.52, "custoTotal": 2392565.64}, {"data": "15/06/2026", "conta": "5629", "centro": "PORTO IMBITUBA", "codProduto": "4512", "produto": "PETCOKE MTE", "navio": "MARITEC", "qtd": 36, "custoUnit": 402.48, "custoTotal": 14424.78}, {"data": "15/06/2026", "conta": "5629", "centro": "PORTO IMBITUBA", "codProduto": "4535", "produto": "GESSO", "navio": "PORT VERA CRUZ", "qtd": 2169, "custoUnit": 171.07, "custoTotal": 371000.38}, {"data": "15/06/2026", "conta": "5629", "centro": "PORTO IMBITUBA", "codProduto": "4540", "produto": "PETCOKE ATE", "navio": "MAOMING", "qtd": 624, "custoUnit": 539.59, "custoTotal": 336578.3}, {"data": "15/06/2026", "conta": "5629", "centro": "PORTO IMBITUBA", "codProduto": "4542", "produto": "GESSO", "navio": "PORT VERA CRUZ", "qtd": 28, "custoUnit": 95.41, "custoTotal": 2659.99}, {"data": "15/06/2026", "conta": "5629", "centro": "PORTO IMBITUBA", "codProduto": "4584", "produto": "TÉRMICO", "navio": "PACIFIC TALENT", "qtd": 36, "custoUnit": 556.41, "custoTotal": 20136.31}, {"data": "15/06/2026", "conta": "5629", "centro": "PORTO IMBITUBA", "codProduto": "4627", "produto": "PETCOKE ATE", "navio": "GLOBAL FANFARE", "qtd": 385, "custoUnit": 461.11, "custoTotal": 177526.9}, {"data": "15/06/2026", "conta": "5629", "centro": "PORTO IMBITUBA", "codProduto": "4636", "produto": "TÉRMICO", "navio": "ODYSSEY", "qtd": 11, "custoUnit": 341.0, "custoTotal": 3825.63}, {"data": "15/06/2026", "conta": "5629", "centro": "PORTO IMBITUBA", "codProduto": "4655", "produto": "TÉRMICO", "navio": "ODYSSEY", "qtd": 341, "custoUnit": 170.1, "custoTotal": 58038.18}, {"data": "15/06/2026", "conta": "5629", "centro": "PORTO IMBITUBA", "codProduto": "4662", "produto": "TÉRMICO", "navio": "JOKER", "qtd": 200, "custoUnit": 555.92, "custoTotal": 111112.41}, {"data": "15/06/2026", "conta": "5629", "centro": "PORTO IMBITUBA", "codProduto": "4663", "produto": "TÉRMICO-TP C", "navio": "IRVINE", "qtd": 259, "custoUnit": 339.02, "custoTotal": 87837.98}, {"data": "15/06/2026", "conta": "5629", "centro": "PORTO IMBITUBA", "codProduto": "4666", "produto": "PETCOKE ATE", "navio": "AFRICAN BAZA", "qtd": 568, "custoUnit": 543.41, "custoTotal": 308443.05}, {"data": "15/06/2026", "conta": "5629", "centro": "PORTO IMBITUBA", "codProduto": "4705", "produto": "PETCOKE ATE", "navio": "SPAR CORONA", "qtd": 13246, "custoUnit": 621.1, "custoTotal": 8226821.51}, {"data": "15/06/2026", "conta": "5630", "centro": "SUL NORTE", "codProduto": "4665", "produto": "TÉRMICO-TP A", "navio": "IRVINE", "qtd": 1141, "custoUnit": 428.85, "custoTotal": 489102.44}, {"data": "15/06/2026", "conta": "5630", "centro": "SUL NORTE", "codProduto": "4705", "produto": "PETCOKE ATE", "navio": "SPAR CORONA", "qtd": 45, "custoUnit": 584.8, "custoTotal": 26520.81}, {"data": "15/06/2026", "conta": "5940", "centro": "CANTEIRÓPOLIS", "codProduto": "4668", "produto": "GESSO", "navio": "OCEAN AZURE", "qtd": 448, "custoUnit": 213.72, "custoTotal": 95805.79}, {"data": "15/06/2026", "conta": "5940", "centro": "CANTEIRÓPOLIS", "codProduto": "4672", "produto": "MINÉRIO", "navio": "EXPORTAÇÃO", "qtd": 14705, "custoUnit": 291.93, "custoTotal": 4292872.64}, {"data": "15/06/2026", "conta": "6660", "centro": "MINAS PORT", "codProduto": "4600", "produto": "PETCOKE MTE", "navio": "VIVA GRAVITY", "qtd": 73, "custoUnit": 704.75, "custoTotal": 51242.39}, {"data": "15/06/2026", "conta": "6660", "centro": "MINAS PORT", "codProduto": "4625", "produto": "PETCOKE ATE", "navio": "INFINITY SKY", "qtd": 12, "custoUnit": 579.87, "custoTotal": 7242.52}, {"data": "15/06/2026", "conta": "6660", "centro": "MINAS PORT", "codProduto": "4669", "produto": "PETCOKE ATE", "navio": "DISCO ISLAND", "qtd": 4, "custoUnit": 545.27, "custoTotal": 2328.32}, {"data": "15/06/2026", "conta": "6660", "centro": "MINAS PORT", "codProduto": "4670", "produto": "PETCOKE MTE", "navio": "DISCO ISLAND", "qtd": 22, "custoUnit": 613.81, "custoTotal": 13755.38}, {"data": "15/06/2026", "conta": "6660", "centro": "MINAS PORT", "codProduto": "4685", "produto": "TÉRMICO", "navio": "FENG ZE HAI", "qtd": 5554, "custoUnit": 626.51, "custoTotal": 3479524.88}, {"data": "15/06/2026", "conta": "6660", "centro": "MINAS PORT", "codProduto": "4695", "produto": "PETCOKE ATE", "navio": "ELEPHANTA", "qtd": 361, "custoUnit": 525.72, "custoTotal": 189586.31}, {"data": "15/06/2026", "conta": "6660", "centro": "MINAS PORT", "codProduto": "4701", "produto": "PETCOKE ATE", "navio": "INFINITY SKY", "qtd": 240, "custoUnit": 729.83, "custoTotal": 175211.06}, {"data": "15/06/2026", "conta": "6660", "centro": "MINAS PORT", "codProduto": "4702", "produto": "TÉRMICO", "navio": "SCARLET+BELKNIGHT", "qtd": 6390, "custoUnit": 1163.37, "custoTotal": 7433749.31}, {"data": "15/06/2026", "conta": "6660", "centro": "MINAS PORT", "codProduto": "4706", "produto": "TÉRMICO", "navio": "FENG ZE HAI", "qtd": 1695, "custoUnit": 631.5, "custoTotal": 1070341.94}, {"data": "15/06/2026", "conta": "6660", "centro": "MINAS PORT", "codProduto": "4713", "produto": "PETCOKE MTE", "navio": "XING HAI TONG", "qtd": 29858, "custoUnit": 668.43, "custoTotal": 19958087.7}, {"data": "15/06/2026", "conta": "6660", "centro": "MINAS PORT", "codProduto": "4715", "produto": "TÉRMICO", "navio": "LILA MUNDRA", "qtd": 54187, "custoUnit": 461.87, "custoTotal": 25027036.31}, {"data": "15/06/2026", "conta": "6660", "centro": "MINAS PORT", "codProduto": "4723", "produto": "PETCOKE ATE", "navio": "SOLE", "qtd": 17857, "custoUnit": 622.29, "custoTotal": 11112037.6}];
-const PEDIDOS_MATRIX = [["SUDESTE", "", "", "", "", "", ""], ["MINAS PORT - T-MULT - CANTEIRÓPOLIS", "", "", "", "", "", ""], ["SAÍDAS", "Cliente", "Material", "Volume do Contrato", "Faturado do Contrato", "Saldo do Contrato", "Cadência Diária"], ["", "CIMENTOS LIZ", "PETCOKE MTE", 193124.86, 165969.79, 27155.07, 500], ["", "CIMENTOS LIZ", "TÉRMICO", 25000, 3798.88, 21201.12, 200], ["", "LS METAIS", "PETCOKE ATE", 5000, 2921.79, 2078.21, 150], ["", "BELOCAL", "PETCOKE MTE", 30000, 7287.48, 22712.52, 350], ["", "CSN", "PETCOKE ATE", 55000, 48453.57, 6546.43, 1000], ["", "APERAM", "COQUE", 750, 165.54, 584.46, 30], ["", "AVANTT", "COQUE", 50, 27.55, 22.45, 0], ["", "LS METAIS", "ANTRACITO", 15000, 0, 15000, 200], ["", "TOTAIS →", "", 308924.86, 228624.6, 95300.26, ""], ["ENTRADAS", "Fornecedor", "Material", "Volume do Contrato", "Faturado do Contrato", "Saldo do Contrato", ""], ["", "MSM", "MINÉRIO", 15000, 14999.55, 0.45, 0], ["", "LGA", "MINÉRIO", 20000, 19941.74, 58.26, 0], ["", "MSA", "MINÉRIO", 10000, 9986.71, 13.29, 0], ["", "TOTAIS →", "", 45000, 44928, 72, ""], ["", "", "", "", "", "", ""], ["", "", "", "", "", "", ""], ["SUL", "", "", "", "", "", ""], ["CARBOBRAS - SUL NORTE - PORTO IMBITUBA", "", "", "", "", "", ""], ["SAÍDAS", "Cliente", "Material", "Volume do Contrato", "Faturado do Contrato", "Saldo do Contrato", ""], ["", "ITAMBÉ", "PETCOKE ATE", 130000, 71861.96, 58138.04, 500], ["", "ITAMBÉ", "GESSO", 30000, 29872.98, 127.02, 300], ["", "SUPREMO", "PETCOKE ATE", 25000, 6462.26, 18537.74, 300], ["", "BELLUNO", "PETCOKE ATE", 30, 30.05, -0.05, 0], ["", "BRASKEM", "TÉRMICO", 70000, 27487.52, 42512.48, 700], ["", "VOTORANTIM", "TÉRMICO", 5000, 3891.87, 1108.13, 100], ["", "RIO DESERTO", "TÉRMICO", 3000, 2982.5, 17.5, 0], ["", "METROPOLITANA", "TÉRMICO", 2000, 1789.84, 210.16, 100], ["", "GABRIELA", "TÉRMICO", 1620, 396.58, 1223.42, 100], ["", "BELLUNO", "CUCUTA", 260, 246.37, 13.63, 0], ["", "BELUNO", "TÉRMICO", 2500, 1251.61, 1248.39, 100], ["", "CARBOBRÁS", "ANTRACITO", 15000, 0, 0, 0], ["", "TOTAIS →", "", 284410, 146273.54, 138136.46, ""]];
+const INITIAL_DATA = [{"data": "16/06/2026", "conta": 4617, "centro": "T-MULT", "codProduto": 4714, "produto": "PETCOKE MTE", "navio": "FYM CRYSTAL", "qtd": 53436.76, "custoUnit": 699.64, "custoTotal": 37386265.34}, {"data": "", "conta": 4617, "centro": "T-MULT", "codProduto": 4715, "produto": "TÉRMICO", "navio": "LILA MUNDRA", "qtd": 338.91, "custoUnit": 381.38, "custoTotal": 129252.43}, {"data": "", "conta": 4617, "centro": "T-MULT", "codProduto": 4723, "produto": "PETCOKE ATE", "navio": "SOLE", "qtd": 2467.25, "custoUnit": 622.18, "custoTotal": 1535066.84}, {"data": "", "conta": 4840, "centro": "CANTEIRÓPOLIS", "codProduto": 4697, "produto": "MINÉRIO", "navio": "EXPORTAÇÃO", "qtd": 18573.3, "custoUnit": 197.28, "custoTotal": 3664166.04}, {"data": "", "conta": 4840, "centro": "CANTEIRÓPOLIS", "codProduto": 4698, "produto": "SINTER", "navio": "EXPORTAÇÃO", "qtd": 11355.15, "custoUnit": 188.98, "custoTotal": 2145846.81}, {"data": "", "conta": 5624, "centro": "CARBOBRÁS", "codProduto": 4662, "produto": "TÉRMICO", "navio": "JOKER", "qtd": 32670.14, "custoUnit": 555.92, "custoTotal": 18162094.27}, {"data": "", "conta": 5624, "centro": "CARBOBRÁS", "codProduto": 4708, "produto": "CUCUTA", "navio": "PACIFIC TALENT", "qtd": 2839.76, "custoUnit": 842.52, "custoTotal": 2392565.64}, {"data": "", "conta": 5629, "centro": "PORTO IMBITUBA", "codProduto": 4512, "produto": "PETCOKE MTE", "navio": "MARITEC", "qtd": 35.84, "custoUnit": 402.48, "custoTotal": 14424.78}, {"data": "", "conta": 5629, "centro": "PORTO IMBITUBA", "codProduto": 4535, "produto": "GESSO", "navio": "PORT VERA CRUZ", "qtd": 2072.24, "custoUnit": 171.07, "custoTotal": 354502.23}, {"data": "", "conta": 5629, "centro": "PORTO IMBITUBA", "codProduto": 4540, "produto": "PETCOKE ATE", "navio": "MAOMING", "qtd": 623.77, "custoUnit": 539.59, "custoTotal": 336578.3}, {"data": "", "conta": 5629, "centro": "PORTO IMBITUBA", "codProduto": 4542, "produto": "GESSO", "navio": "PORT VERA CRUZ", "qtd": 27.88, "custoUnit": 95.41, "custoTotal": 2659.99}, {"data": "", "conta": 5629, "centro": "PORTO IMBITUBA", "codProduto": 4584, "produto": "TÉRMICO", "navio": "PACIFIC TALENT", "qtd": 36.19, "custoUnit": 556.41, "custoTotal": 20136.31}, {"data": "", "conta": 5629, "centro": "PORTO IMBITUBA", "codProduto": 4627, "produto": "PETCOKE ATE", "navio": "GLOBAL FANFARE", "qtd": 385, "custoUnit": 461.11, "custoTotal": 177526.9}, {"data": "", "conta": 5629, "centro": "PORTO IMBITUBA", "codProduto": 4636, "produto": "TÉRMICO", "navio": "ODYSSEY", "qtd": 11.22, "custoUnit": 341.0, "custoTotal": 3825.63}, {"data": "", "conta": 5629, "centro": "PORTO IMBITUBA", "codProduto": 4655, "produto": "TÉRMICO", "navio": "ODYSSEY", "qtd": 341.19, "custoUnit": 170.1, "custoTotal": 58038.18}, {"data": "", "conta": 5629, "centro": "PORTO IMBITUBA", "codProduto": 4662, "produto": "TÉRMICO", "navio": "JOKER", "qtd": 199.87, "custoUnit": 555.92, "custoTotal": 111112.41}, {"data": "", "conta": 5629, "centro": "PORTO IMBITUBA", "codProduto": 4663, "produto": "TÉRMICO-TP C", "navio": "IRVINE", "qtd": 149.07, "custoUnit": 339.02, "custoTotal": 50538.89}, {"data": "", "conta": 5629, "centro": "PORTO IMBITUBA", "codProduto": 4666, "produto": "PETCOKE ATE", "navio": "AFRICAN BAZA", "qtd": 567.61, "custoUnit": 543.41, "custoTotal": 308443.05}, {"data": "", "conta": 5629, "centro": "PORTO IMBITUBA", "codProduto": 4705, "produto": "PETCOKE ATE", "navio": "SPAR CORONA", "qtd": 13053, "custoUnit": 621.1, "custoTotal": 8107179.6}, {"data": "", "conta": 5630, "centro": "SUL NORTE", "codProduto": 4665, "produto": "TÉRMICO-TP A", "navio": "IRVINE", "qtd": 1140.51, "custoUnit": 428.85, "custoTotal": 489102.44}, {"data": "", "conta": 5630, "centro": "SUL NORTE", "codProduto": 4705, "produto": "PETCOKE ATE", "navio": "SPAR CORONA", "qtd": 45.35, "custoUnit": 584.8, "custoTotal": 26520.81}, {"data": "", "conta": 5940, "centro": "CANTEIRÓPOLIS", "codProduto": 4668, "produto": "GESSO", "navio": "OCEAN AZURE", "qtd": 448.27, "custoUnit": 213.72, "custoTotal": 95805.79}, {"data": "", "conta": 5940, "centro": "CANTEIRÓPOLIS", "codProduto": 4672, "produto": "MINÉRIO", "navio": "EXPORTAÇÃO", "qtd": 14705.38, "custoUnit": 291.93, "custoTotal": 4292872.64}, {"data": "", "conta": 6660, "centro": "MINAS PORT", "codProduto": 4600, "produto": "PETCOKE MTE", "navio": "VIVA GRAVITY", "qtd": 72.71, "custoUnit": 704.75, "custoTotal": 51242.39}, {"data": "", "conta": 6660, "centro": "MINAS PORT", "codProduto": 4625, "produto": "PETCOKE ATE", "navio": "INFINITY SKY", "qtd": 12.49, "custoUnit": 579.87, "custoTotal": 7242.52}, {"data": "", "conta": 6660, "centro": "MINAS PORT", "codProduto": 4669, "produto": "PETCOKE ATE", "navio": "DISCO ISLAND", "qtd": 4.27, "custoUnit": 545.27, "custoTotal": 2328.32}, {"data": "", "conta": 6660, "centro": "MINAS PORT", "codProduto": 4670, "produto": "PETCOKE MTE", "navio": "DISCO ISLAND", "qtd": 22.41, "custoUnit": 613.81, "custoTotal": 13755.38}, {"data": "", "conta": 6660, "centro": "MINAS PORT", "codProduto": 4685, "produto": "TÉRMICO", "navio": "FENG ZE HAI", "qtd": 5553.82, "custoUnit": 626.51, "custoTotal": 3479524.88}, {"data": "", "conta": 6660, "centro": "MINAS PORT", "codProduto": 4695, "produto": "PETCOKE ATE", "navio": "ELEPHANTA", "qtd": 360.62, "custoUnit": 525.72, "custoTotal": 189586.31}, {"data": "", "conta": 6660, "centro": "MINAS PORT", "codProduto": 4701, "produto": "PETCOKE ATE", "navio": "INFINITY SKY", "qtd": 240.07, "custoUnit": 729.83, "custoTotal": 175211.06}, {"data": "", "conta": 6660, "centro": "MINAS PORT", "codProduto": 4702, "produto": "TÉRMICO", "navio": "SCARLET+BELKNIGHT", "qtd": 6389.83, "custoUnit": 1163.37, "custoTotal": 7433749.31}, {"data": "", "conta": 6660, "centro": "MINAS PORT", "codProduto": 4706, "produto": "TÉRMICO", "navio": "FENG ZE HAI", "qtd": 1694.92, "custoUnit": 631.5, "custoTotal": 1070341.94}, {"data": "", "conta": 6660, "centro": "MINAS PORT", "codProduto": 4713, "produto": "PETCOKE MTE", "navio": "XING HAI TONG", "qtd": 29858.2, "custoUnit": 668.43, "custoTotal": 19958087.7}, {"data": "", "conta": 6660, "centro": "MINAS PORT", "codProduto": 4715, "produto": "TÉRMICO", "navio": "LILA MUNDRA", "qtd": 54186.65, "custoUnit": 461.87, "custoTotal": 25027036.31}, {"data": "", "conta": 6660, "centro": "MINAS PORT", "codProduto": 4723, "produto": "PETCOKE ATE", "navio": "SOLE", "qtd": 15722.5, "custoUnit": 622.29, "custoTotal": 9783908.9}];
+const PEDIDOS_MATRIX = [["SUDESTE", "", "", "", "", "", ""], ["MINAS PORT - T-MULT - CANTEIRÓPOLIS", "", "", "", "", "", ""], ["SAÍDAS", "Cliente", "Material", "Volume do\nContrato", "Faturado do\nContrato", "Saldo do\nContrato", "Cadência Diária"], ["", "CIMENTOS LIZ", "PETCOKE MTE", 193124.86, 165969.79, 27155.07, 500], ["", "CIMENTOS LIZ", "TÉRMICO", 25000, 3798.88, 21201.12, 200], ["", "LS METAIS", "PETCOKE ATE", 5000, 3048.12, 1951.88, 150], ["", "BELOCAL", "PETCOKE MTE", 30000, 7425.08, 22574.92, 350], ["", "CSN", "PETCOKE ATE", 55000, 50461.51, 4538.49, 1000], ["", "GECAL", "PETCOKE MTE", 100, 94, 6, 0], ["", "APERAM", "COQUE", 750, 165.54, 584.46, 30], ["", "AVANTT", "COQUE", 50, 27.55, 22.45, 0], ["", "LS METAIS", "ANTRACITO", 15000, 0, 15000, 0], ["", "TOTAIS →", "", 309024.86, 230990.47, 93034.39, ""], ["ENTRADAS", "Fornecedor", "Material", "Volume do Contrato", "Faturado do Contrato", "Saldo do Contrato", "Cadência Diária"], ["", "MSM", "MINÉRIO", 15000, 14999.55, 0.45, 0], ["", "LGA", "MINÉRIO", 20000, 19941.74, 58.26, 0], ["", "MSA", "MINÉRIO", 10000, 9986.71, 13.29, 0], ["", "TOTAIS →", "", 45000, 44928, 72, ""], ["", "", "", "", "", "", ""], ["", "", "", "", "", "", ""], ["SUL", "", "", "", "", "", ""], ["CARBOBRAS - SUL NORTE - PORTO IMBITUBA", "", "", "", "", "", ""], ["SAÍDAS", "Cliente", "Material", "Volume do\nContrato", "Faturado do\nContrato", "Saldo do\nContrato", "Cadência Diária"], ["", "ITAMBÉ", "PETCOKE ATE", 130000, 71940.85, 58059.15, 200], ["", "ITAMBÉ", "GESSO", 30000, 29969.42, 30.58, 30], ["", "SUPREMO", "PETCOKE ATE", 25000, 6462.26, 18537.74, 300], ["", "BELLUNO", "PETCOKE ATE", 30, 30.05, -0.05, 0], ["", "BRASKEM", "TÉRMICO", 70000, 28007.33, 41992.67, 700], ["", "VOTORANTIM", "TÉRMICO", 5000, 3891.87, 1108.13, 100], ["", "RIO DESERTO", "TÉRMICO", 3000, 2982.5, 17.5, 0], ["", "METROPOLITANA", "TÉRMICO", 2300, 1995.39, 304.61, 100], ["", "GABRIELA", "TÉRMICO", 1620, 477.25, 1142.75, 100], ["", "BELLUNO", "CUCUTA", 260, 246.37, 13.63, 0], ["", "BELUNO", "TÉRMICO", 2500, 1408.95, 1091.05, 100], ["", "CARBOBRÁS", "ANTRACITO", 15000, 0, 15000, 0], ["", "TOTAIS →", "", 284410, 147412.24, 136997.76, ""]];
 
 /* ============ CONFIGURAÇÃO DA FONTE ONLINE ============
-   Lê DUAS abas da mesma planilha viva, pelo nome, via gviz (JSONP, sem CORS).
-   A planilha precisa estar como "qualquer pessoa com o link pode ver".
-   Se você renomear as abas, ajuste ABA_ESTOQUE / ABA_PEDIDOS abaixo. */
+   FONTE PRIMÁRIA: link "Publicar na web" da planilha em .xlsx (traz TODAS as abas
+   numa requisição só). Funciona mesmo sem o documento estar compartilhado, desde
+   que "Arquivo › Compartilhar › Publicar na web" esteja ativo para a planilha inteira.
+   FALLBACK: gviz/JSONP por nome de aba (exige documento "qualquer pessoa com o link
+   pode ver"). Usado automaticamente se o link de publicação falhar. */
 const CONFIG = {
-  SHEET_ID:   '1P7kPVixpehSAPkFma8Zo5ecgiCkGrvbieez0qj3aIlU',
-  ABA_ESTOQUE:'ESTOQUE',
-  ABA_PEDIDOS:'PEDIDOS',
+  PUB_XLSX_URL: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQaLz1lhp--hokdn88Rzonjw48CSnhqbAAUaF5_H8L3sw5VGUtkP_oQLrKfFNXBdp38NcCN40SFDYbc/pub?output=xlsx',
+  SHEET_ID:    '1P7kPVixpehSAPkFma8Zo5ecgiCkGrvbieez0qj3aIlU',
+  ABA_ESTOQUE: 'ESTOQUE',
+  ABA_PEDIDOS: 'PEDIDOS',
   AUTO_REFRESH_MIN: 60
 };
 
@@ -584,7 +587,9 @@ function cleanStr(v){ return v==null ? '' : String(v).trim(); }
 function normKey(s){ return (s==null?'':String(s)).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toUpperCase().replace(/\s+/g,' ').trim(); }
 function pct(v,t){ return t>0 ? (v/t*100) : 0; }
 function fmtT(v){ return NUM0.format(Math.round(v)); }
-function parseDataBR(s){ const m=/(\d{1,2})\/(\d{1,2})\/(\d{2,4})/.exec(s||''); if(!m)return null; let y=+m[3]; if(y<100)y+=2000; return new Date(y,+m[2]-1,+m[1]); }
+function parseDataBR(s){ if(s instanceof Date && !isNaN(s)) return s; const m=/(\d{1,2})\/(\d{1,2})\/(\d{2,4})/.exec(String(s==null?'':s)); if(!m)return null; let y=+m[3]; if(y<100)y+=2000; return new Date(y,+m[2]-1,+m[1]); }
+/* formata célula de data (aceita Date, número-serial ou string) para dd/mm/aaaa */
+function fmtDataCell(v){ if(v instanceof Date && !isNaN(v)) return v.toLocaleDateString('pt-BR'); return cleanStr(v); }
 function parseNumBR(v){
   if(v==null) return 0;
   if(typeof v==='number') return isFinite(v)?v:0;
@@ -608,7 +613,7 @@ function normalizeRows(rows){
     const centro=cleanStr(r.centro), produto=cleanStr(r.produto);
     if(!centro || !produto) continue;
     out.push({
-      data:cleanStr(r.data), conta:cleanStr(r.conta), centro:centro.toUpperCase(),
+      data:fmtDataCell(r.data), conta:cleanStr(r.conta), centro:centro.toUpperCase(),
       codProduto:cleanStr(r.codProduto), produto:produto.toUpperCase(), navio:cleanStr(r.navio),
       qtd:parseNumBR(r.qtd), custoUnit:parseNumBR(r.custoUnit), custoTotal:parseNumBR(r.custoTotal)
     });
@@ -942,11 +947,34 @@ function applyImported(rows,name){
   }catch(err){toast('Falha na importação: '+err.message,true);}
 }
 
-/* ============ ATUALIZAÇÃO AUTOMÁTICA (gviz/JSONP por nome de aba) ============ */
+/* ============ ATUALIZAÇÃO AUTOMÁTICA ============ */
 function setStatus(txt,cls){
   const el=$('liveStatus'); if(!el)return; el.style.display=txt?'':'none'; el.textContent=txt;
   el.style.color = cls==='ok' ? '#b7d632' : cls==='err' ? '#e2a23b' : '#9aa094';
 }
+function finalizarUpdate(okE,okP,silencioso,origem){
+  populateFilters(!primeiraCarga); primeiraCarga=false; renderAll();
+  if(okE||okP){
+    const h=new Date().toLocaleString('pt-BR',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'});
+    setStatus('Atualizado em '+h,'ok'); if(!silencioso)toast('Base atualizada ('+origem+').');
+  }
+}
+function falhou(silencioso,msg){
+  setStatus('Sem conexão — usando última base','err');
+  if(!silencioso)toast('Não foi possível atualizar online. '+(msg||''),true);
+}
+
+/* lê um workbook (SheetJS) e aplica as abas ESTOQUE e PEDIDOS */
+function aplicarWorkbook(wb){
+  const acha=(...termos)=>wb.SheetNames.find(n=>{const k=normKey(n);return termos.some(t=>k===normKey(t)||k.indexOf(normKey(t))>=0);});
+  const snE=acha(CONFIG.ABA_ESTOQUE,'ESTOQUE');
+  const snP=acha(CONFIG.ABA_PEDIDOS,'PEDIDO');
+  let okE=false, okP=false;
+  if(snE){ const m=XLSX.utils.sheet_to_json(wb.Sheets[snE],{header:1,defval:'',raw:true}); const n=normalizeRows(rowsFromMatrix(m)); if(n.length){RAW=n;okE=true;} }
+  if(snP){ const m=XLSX.utils.sheet_to_json(wb.Sheets[snP],{header:1,defval:'',raw:true}); const p=parsePedidos(m); if(p.length){PED=p;okP=true;} }
+  return {okE,okP};
+}
+
 function gvizCarregar(sheetName,headers,onRows,onFail){
   const cb='__gviz_'+Math.random().toString(36).slice(2);
   const s=document.createElement('script'); let done=false;
@@ -962,18 +990,41 @@ function gvizCarregar(sheetName,headers,onRows,onFail){
         +'&sheet='+encodeURIComponent(sheetName)+'&headers='+headers+'&_='+Date.now();
   document.head.appendChild(s);
 }
-function carregarRemoto(silencioso){
-  if(!CONFIG.SHEET_ID){ setStatus('Fonte online não configurada',''); return; }
-  setStatus('Atualizando…');
+function carregarViaGviz(silencioso){
+  if(!CONFIG.SHEET_ID){ falhou(silencioso,'Verifique "Publicar na web" (.xlsx) ou o compartilhamento da planilha.'); return; }
   let restantes=2, okE=false, okP=false;
   const fim=()=>{ if(--restantes>0)return;
-    populateFilters(!primeiraCarga); primeiraCarga=false; renderAll();
-    const h=new Date().toLocaleString('pt-BR',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'});
-    if(okE||okP){ setStatus('Atualizado em '+h,'ok'); if(!silencioso)toast('Base atualizada online.'); }
-    else { setStatus('Sem conexão — usando última base','err'); if(!silencioso)toast('Não foi possível atualizar. Confira se a planilha está como "qualquer pessoa com o link pode ver" e os nomes das abas.',true); }
+    if(okE||okP) finalizarUpdate(okE,okP,silencioso,'planilha');
+    else falhou(silencioso,'Confira se a planilha está publicada (.xlsx) ou como "qualquer pessoa com o link pode ver", e os nomes das abas.');
   };
   gvizCarregar(CONFIG.ABA_ESTOQUE,1,(m)=>{ try{ const n=normalizeRows(m.map(a=>{const o={};CANON.forEach((k,i)=>o[k]=a[i]!=null?a[i]:'');return o;})); if(n.length){RAW=n;okE=true;} }catch(e){} fim(); }, ()=>fim());
   gvizCarregar(CONFIG.ABA_PEDIDOS,0,(m)=>{ try{ const p=parsePedidos(m); if(p.length){PED=p;okP=true;} }catch(e){} fim(); }, ()=>fim());
+}
+
+async function carregarRemoto(silencioso){
+  const temPub=!!(CONFIG.PUB_XLSX_URL||'').trim();
+  const temGviz=!!(CONFIG.SHEET_ID||'').trim();
+  if(!temPub && !temGviz){ setStatus('Fonte online não configurada',''); return; }
+  setStatus('Atualizando…');
+  // 1) FONTE PRIMÁRIA: link de publicação (.xlsx) — traz todas as abas
+  if(temPub && typeof XLSX!=='undefined'){
+    try{
+      const u=CONFIG.PUB_XLSX_URL.trim();
+      const url=u+(u.indexOf('?')>=0?'&':'?')+'cb='+Date.now();
+      const resp=await fetch(url,{cache:'no-store',redirect:'follow'});
+      if(!resp.ok) throw new Error('HTTP '+resp.status);
+      const wb=XLSX.read(new Uint8Array(await resp.arrayBuffer()),{type:'array',cellDates:true});
+      const r=aplicarWorkbook(wb);
+      if(r.okE||r.okP){ finalizarUpdate(r.okE,r.okP,silencioso,'planilha publicada'); return; }
+      throw new Error('abas ESTOQUE/PEDIDOS não localizadas no arquivo publicado');
+    }catch(err){
+      if(!temGviz){ falhou(silencioso,'Falha ao ler a planilha publicada ('+err.message+'). Verifique se "Publicar na web" está ativo em .xlsx.'); return; }
+      // senão, tenta o fallback gviz silenciosamente
+    }
+  }
+  // 2) FALLBACK: gviz por nome de aba
+  if(temGviz) carregarViaGviz(silencioso);
+  else falhou(silencioso);
 }
 
 /* ============ TOAST ============ */
