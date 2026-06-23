@@ -1063,8 +1063,42 @@ function matrixFromPED(){
 
 /* ============ EXPORTAÇÃO PDF (da aba ativa) ============ */
 async function captureEl(el,width){
-  return await html2canvas(el,{scale:2,useCORS:true,backgroundColor:'#0a0b0a',windowWidth:width,scrollX:0,scrollY:-window.scrollY,
-    onclone:doc=>{ doc.body.classList.add('exporting'); doc.querySelectorAll('.tbl-wrap').forEach(w=>{w.style.maxHeight='none';w.style.overflow='visible';}); }});
+  const cut={h:0,rows:[]};
+  el.setAttribute('data-pdfcap','1');
+  const canvas=await html2canvas(el,{scale:2,useCORS:true,backgroundColor:'#0a0b0a',windowWidth:width,scrollX:0,scrollY:-window.scrollY,
+    onclone:doc=>{
+      doc.body.classList.add('exporting');
+      doc.querySelectorAll('.tbl-wrap').forEach(w=>{w.style.maxHeight='none';w.style.overflow='visible';});
+      const cl=doc.querySelector('[data-pdfcap="1"]');
+      if(cl){
+        const r=cl.getBoundingClientRect(); cut.h=r.height;
+        // limites seguros de corte = base de cada linha de tabela (nunca no meio de uma linha)
+        cut.rows=[...cl.querySelectorAll('table > tbody > tr, table > tfoot > tr')]
+          .map(tr=>tr.getBoundingClientRect().bottom-r.top).filter(b=>b>0);
+      }
+    }});
+  el.removeAttribute('data-pdfcap');
+  const s=cut.h>0?canvas.height/cut.h:2; // px do canvas por px de layout
+  return {canvas,rows:cut.rows.map(v=>v*s)};
+}
+/* monta a lista de blocos ATÔMICOS: cada card / painel / gráfico / título vira
+   uma unidade indivisível, descendo dentro dos contêineres grandes para que a
+   quebra de página nunca corte um card, gráfico ou indicador */
+function collectBlocks(){
+  const dash=$('dashboard'); const out=[];
+  const walk=el=>{
+    if(!el) return;
+    if(el.id==='centros'||el.id==='pedConteudo'||(el.classList&&el.classList.contains('reg-block'))){
+      [...el.children].forEach(walk); return;
+    }
+    if(el.offsetHeight>0) out.push(el);
+  };
+  walk(dash.querySelector('.topbar'));
+  walk(dash.querySelector('.tabs'));
+  [...$('view-estoque').children].forEach(walk);
+  [...$('view-pedidos').children].forEach(walk);
+  walk(dash.querySelector('.foot'));
+  return out;
 }
 async function exportPDF(){
   if(typeof html2canvas==='undefined' || !window.jspdf){toast('Exportação requer conexão (biblioteca não carregou).',true);return;}
@@ -1082,20 +1116,39 @@ async function exportPDF(){
     const margin=8, gap=3, usableW=pw-margin*2, usableH=ph-margin*2;
     const fullW=dash.scrollWidth; let cursorY=margin;
     const fillBg=()=>{pdf.setFillColor(10,11,10);pdf.rect(0,0,pw,ph,'F');}; fillBg();
-    const blocks=[ dash.querySelector('.topbar'), dash.querySelector('.tabs'),
-                   ...$('view-estoque').children, ...$('view-pedidos').children,
-                   dash.querySelector('.foot') ].filter(el=>el && el.offsetHeight>0);
+    const blocks=collectBlocks();
     for(const el of blocks){
       const isTitle=el.classList && el.classList.contains('sec-title');
-      const canvas=await captureEl(el,fullW);
+      const {canvas,rows}=await captureEl(el,fullW);
       const imgW=usableW, imgH=canvas.height*imgW/canvas.width, img=canvas.toDataURL('image/png');
-      if(isTitle && cursorY+imgH+40>ph-margin){pdf.addPage();fillBg();cursorY=margin;}
-      if(imgH<=usableH){ if(cursorY+imgH>ph-margin){pdf.addPage();fillBg();cursorY=margin;} pdf.addImage(img,'PNG',margin,cursorY,imgW,imgH,'','FAST'); cursorY+=imgH+gap; }
-      else{ if(cursorY>margin){pdf.addPage();fillBg();cursorY=margin;} const pxPerMm=canvas.width/imgW, pageSlicePx=Math.floor(usableH*pxPerMm); let srcY=0;
-        while(srcY<canvas.height){ if(srcY>0){pdf.addPage();fillBg();cursorY=margin;} const sliceH=Math.min(pageSlicePx,canvas.height-srcY);
+      // um título de seção nunca fica órfão no rodapé sem conteúdo abaixo
+      if(isTitle && cursorY+imgH+38>ph-margin){pdf.addPage();fillBg();cursorY=margin;}
+      if(imgH<=usableH){
+        // cabe inteiro: se não couber no que resta da página, joga para a próxima (sem cortar)
+        if(cursorY+imgH>ph-margin){pdf.addPage();fillBg();cursorY=margin;}
+        pdf.addImage(img,'PNG',margin,cursorY,imgW,imgH,'','FAST'); cursorY+=imgH+gap;
+      } else {
+        // bloco maior que uma página inteira (tabela longa): fatia SÓ entre linhas
+        if(cursorY>margin){pdf.addPage();fillBg();cursorY=margin;}
+        const pxPerMm=canvas.width/imgW, pageSlicePx=Math.floor(usableH*pxPerMm);
+        const bounds=rows.filter(r=>r>0 && r<canvas.height).sort((a,b)=>a-b);
+        let srcY=0, first=true;
+        while(srcY<canvas.height-1){
+          if(!first){pdf.addPage();fillBg();cursorY=margin;}
+          first=false;
+          let target=Math.min(srcY+pageSlicePx,canvas.height);
+          if(target<canvas.height){ // recua até a base de linha mais próxima (não corta a linha)
+            let snap=-1;
+            for(const b of bounds){ if(b>srcY+12 && b<=target+0.5) snap=b; else if(b>target) break; }
+            if(snap>srcY+12) target=Math.round(snap);
+          }
+          const sliceH=Math.max(1,Math.round(target-srcY));
           const tmp=document.createElement('canvas'); tmp.width=canvas.width; tmp.height=sliceH;
           tmp.getContext('2d').drawImage(canvas,0,srcY,canvas.width,sliceH,0,0,canvas.width,sliceH);
-          pdf.addImage(tmp.toDataURL('image/png'),'PNG',margin,cursorY,imgW,sliceH/pxPerMm,'','FAST'); cursorY+=sliceH/pxPerMm+gap; srcY+=sliceH; } }
+          pdf.addImage(tmp.toDataURL('image/png'),'PNG',margin,cursorY,imgW,sliceH/pxPerMm,'','FAST');
+          cursorY+=sliceH/pxPerMm+gap; srcY+=sliceH;
+        }
+      }
     }
     pdf.save(`Dashboard_Estoque_Minas_Port_${new Date().toISOString().slice(0,10)}.pdf`);
     toast('PDF completo exportado (estoque + pedidos)!');
